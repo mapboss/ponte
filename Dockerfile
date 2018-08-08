@@ -18,7 +18,7 @@ RUN addgroup -g 1000 node \
         python \
   # gpg keys listed at https://github.com/nodejs/node#release-team
   && for key in \
-    "${NODE_KEYS[@]}"
+    "${NODE_KEYS[@]}" \
   ; do \
     gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$key" || \
     gpg --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys "$key" || \
@@ -42,7 +42,7 @@ ENV YARN_VERSION 1.9.4
 
 RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
   && for key in \
-    "${YARN_KEYS[@]}"
+    "${YARN_KEYS[@]}" \
   ; do \
     gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$key" || \
     gpg --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys "$key" || \
