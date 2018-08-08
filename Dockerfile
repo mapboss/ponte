@@ -1,4 +1,4 @@
-FROM alpine:0.0
+FROM alpine
 
 ENV NODE_VERSION 4.3.1
 
@@ -57,5 +57,8 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
   && apk del .build-deps-yarn
+  
+RUN npm install ponte bunyan -g
 
-CMD [ "node" ]
+
+CMD [ "/bin/sh", "-c", "ponte", "-v", "|", "bunyan" ]
